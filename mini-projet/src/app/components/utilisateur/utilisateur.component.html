@@ -1,0 +1,10 @@
+<div>
+    <p> TEST </p>
+    <ng-container *ngFor="let utilisateur">
+      <app-utilisateur
+        [username]="utilisateur.username"
+        [password]="utilisateur.password"
+      ></app-utilisateur>
+    </ng-container>
+</div>
+  
