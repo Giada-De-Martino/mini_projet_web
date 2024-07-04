@@ -9,7 +9,7 @@ export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' }, // default route
     { path: 'login', component: LoginComponent },
     { path: 'utilisateur', component: UtilisateurComponent },
-    { path: 'utilisateur', component: SujetComponent },
-    { path: 'utilisateur', component: PostComponent },
-    { path: 'utilisateur', component: CoursComponent },
+    { path: 'sujet', component: SujetComponent },
+    { path: 'post', component: PostComponent },
+    { path: 'cours', component: CoursComponent },
 ];

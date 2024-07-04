@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
-  styleUrls :['../../styles.css', './login.component.css'],
-  imports: [FormsModule]
+  styleUrls: ['../../styles.css', './login.component.css'],
+  imports: [FormsModule, RouterModule]
 })
 export class LoginComponent {
   username: string = '';
@@ -16,7 +16,7 @@ export class LoginComponent {
   constructor(private router: Router) {}
 
   login() {
-    if (this.username == "toto" && this.password == "toto") {
+    if (this.username === 'toto' && this.password === 'toto') {
       this.router.navigateByUrl('/utilisateur');
     } else {
       alert('Invalid username or password');
