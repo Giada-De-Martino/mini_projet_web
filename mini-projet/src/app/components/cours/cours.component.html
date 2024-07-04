@@ -1,1 +1,28 @@
-<p>cours works!</p>
+<!-- src/app/components/cours/cours.component.html -->
+<div class="main">
+    <h1> Cours </h1>
+    <button type="button" routerLink="/add-cours"> Ajouter un cours </button>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th> Nom du cours </th>
+                    <th> Auteur </th>
+                    <th> Date de création </th>
+                    <th> Actions </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cour of cours">
+                    <td>{{ cour.titre }}</td>
+                    <td>{{ cour.auteurId }}</td>
+                    <td>{{ cour.created }}</td>
+                    <td>
+                        <button> Modifier </button>
+                        <button> Effacer </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

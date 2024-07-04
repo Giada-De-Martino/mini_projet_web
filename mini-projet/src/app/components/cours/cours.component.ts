@@ -1,12 +1,27 @@
-import { Component } from '@angular/core';
+// src/app/components/cours/cours.component.ts
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { CoursModel } from '../../models/cours.model';
+import { CoursService } from '../../services/cours.service';
 
 @Component({
   selector: 'app-cours',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: './cours.component.html',
-  styleUrl: './cours.component.css'
+  styleUrls: ['../../../styles.css']
 })
-export class CoursComponent {
+export class CoursComponent implements OnInit {
+  cours: CoursModel[] = [];
 
+  constructor(private coursService: CoursService) { }
+
+  ngOnInit(): void {
+    this.loadCours();
+  }
+
+  async loadCours(): Promise<void> {
+    this.cours = await this.coursService.getCours();
+  }
 }

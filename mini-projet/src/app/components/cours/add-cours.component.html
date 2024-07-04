@@ -1,0 +1,18 @@
+<div class="main">
+    <h1>Création d'un nouveau cours</h1>
+
+    <p>Veuillez insérer les données demandées</p>
+
+    <form (ngSubmit)="onSubmit()">
+        <label for="titre">Titre :</label>
+        <input type="text" id="titre" name="titre" [(ngModel)]="titre" required><br><br>
+        
+        <!-- Champ caché pour l'auteur (current user) -->
+        <input type="text" id="auteur" name="auteur" [(ngModel)]="auteur" hidden>
+        
+        <!-- Champ caché pour la date (current date) -->
+        <input type="text" id="date" name="date" [(ngModel)]="date" hidden>
+        
+        <input type="submit" value="Submit">
+    </form>
+</div>

@@ -17,7 +17,7 @@ export class LoginComponent {
 
   login() {
     if (this.username === 'toto' && this.password === 'toto') {
-      this.router.navigateByUrl('/utilisateur');
+      this.router.navigateByUrl('/cours');
     } else {
       alert('Invalid username or password');
     }
