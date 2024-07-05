@@ -17,9 +17,15 @@
                     <td>{{ cour.titre }}</td>
                     <td>{{ cour.auteurId }}</td>
                     <td>{{ cour.created }}</td>
-                    <td>
-                        <button> Modifier </button>
-                        <button> Effacer </button>
+                    <td class="button-group">
+                        <button [ngClass]="{ 'action-button': true, 'inactive': currentUserId !== cour.auteurId }"
+                            [disabled]="currentUserId !== cour.auteurId">
+                            Modifier
+                        </button>
+                        <button [ngClass]="{ 'action-button': true, 'inactive': currentUserId !== cour.auteurId }"
+                            [disabled]="currentUserId !== cour.auteurId" (click)="deleteCours(cour.id)">
+                            Effacer
+                        </button>
                     </td>
                 </tr>
             </tbody>

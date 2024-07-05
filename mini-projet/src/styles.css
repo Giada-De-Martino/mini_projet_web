@@ -1,9 +1,36 @@
-/*login.component.css*/
 .headquarters {
     position: fixed;
     top: 0;
     left: 60px;
     width: auto;
+    padding: 10px;
+    font-size: 24px;
+    text-align: center;
+}
+  
+.content-container {
+    margin-top: 20px; /* 20px space from the header */
+    padding-bottom: 20px; /* 20px space from the bottom */
+    padding-left: 10px; /* Optional: Adding some left padding for better aesthetics */
+    padding-right: 10px; /* Optional: Adding some right padding for better aesthetics */
+    min-height: calc(100vh - 40px - 40px); /* Ensuring the content-container takes the full viewport height minus header and bottom spacing */
+    box-sizing: border-box; /* Ensuring padding is included in the element's total width and height */
+}
+
+.button-group {
+    display: flex;
+    gap: 5px; /* Espace entre les boutons */
+}
+
+.action-button {
+    padding: 5px 10px;
+    border: none;
+}
+
+.inactive {
+    background-color: #ccc; /* Couleur de fond des boutons inactifs */
+    color: #666; /* Couleur du texte des boutons inactifs */
+    cursor: not-allowed;
 }
 
 body {

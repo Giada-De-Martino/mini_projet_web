@@ -16,9 +16,19 @@ export class CoursService {
   return records;
   }
 
-  async addCours(cours: CoursModel) {
+  async addCours(data: { titre: string; auteurId: string }) {
     const pb = new PocketBase(environment.baseUrl);
-    const response:CoursModel = await pb.collection('cours').create(cours);
+    const record = await pb.collection('Cours').create(data);
+  }
+
+  async updateCours(data: { titre: string; auteurId: string }){
+    const pb = new PocketBase(environment.baseUrl);
+    const record = await pb.collection('Cours').update('RECORD_ID', data);
+  }
+
+  async deleteCours(idCours: string){
+    const pb = new PocketBase(environment.baseUrl);
+    await pb.collection('Cours').delete(idCours);
   }
 
   constructor() { }
