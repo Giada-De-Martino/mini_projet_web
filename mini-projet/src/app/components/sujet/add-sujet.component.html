@@ -1,14 +1,13 @@
+<!-- src/app/components/sujet/add-sujet.component.html -->
 <div class="breadcrumb">
-    <a routerLink="/cours">Sujets</a><span>/Création d'un sujet</span>
+    <a routerLink="/cours">Cours</a><span>/Sujets</span>
 </div>
 <div class="main">
     <h1>Création d'un nouveau sujet</h1>
-
     <p>Veuillez insérer les données demandées</p>
-
     <form (ngSubmit)="create()">
         <label for="titre">Titre :</label>
-        <input type="text" id="titre" name="titre" [(ngModel)]="titre" required><br><br>        
+        <input type="text" id="titre" name="titre" [(ngModel)]="titre" required><br><br>
         <input type="submit" value="Submit">
     </form>
 </div>

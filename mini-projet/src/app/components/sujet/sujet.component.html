@@ -1,35 +1,46 @@
-<div class="main">
-    <h1> Sujets </h1>
-    <button type="button" routerLink="/add-sujet"> Ajouter un sujet </button>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th> Nom du sujet </th>
-                    <th> Auteur </th>
-                    <th> Date du dernier post </th>
-                    <th> Nombre de post </th>
-                    <th> Actions </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let sujet of sujets">
-                    <td routerLink="/post/{{sujet.id}}">{{ sujet.titre }}</td>
-                    <td routerLink="/post/{{sujet.id}}">{{ sujet.auteurId }}</td>
-                    <!-- <td routerLink="/sujet/{{sujet.id}}">{{ sujet.created }}</td> date du dernier post -->
-                    <!-- <td routerLink="/sujet/{{sujet.id}}">{{ sujet.created }}</td> nombre de post -->
-                    <td class="button-group">
-                        <button [ngClass]="{ 'action-button': true, 'inactive': currentUserId !== sujet.auteurId }"
-                            [disabled]="currentUserId !== sujet.auteurId" [routerLink]="['/update-sujet', sujet.id]">
-                            Modifier
-                        </button>
-                        <button [ngClass]="{ 'action-button': true, 'inactive': currentUserId !== sujet.auteurId }"
-                            [disabled]="currentUserId !== sujet.auteurId" (click)="deleteSujet(sujet.id)">
-                            Effacer
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<!-- src/app/components/sujet/sujet.component.html -->
+<div class="breadcrumb">
+    <a routerLink="/cours">Cours</a><span>/Sujet</span>
 </div>
+<div class="main">
+    <h1>Sujets</h1>
+    <button type="button" routerLink="/add-sujet">Ajouter un sujet</button>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Nom du sujet</th>
+            <th>Auteur</th>
+            <th>Date du dernier post</th>
+            <th>Nombre de post</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sujet of sujets">
+            <td routerLink="/post/{{sujet.id}}">{{ sujet.titre }}</td>
+            <td routerLink="/post/{{sujet.id}}">{{ sujet.auteurId }}</td>
+            <td routerLink="/post/{{sujet.id}}">{{ sujet.latestPostDate }}</td>
+            <td routerLink="/post/{{sujet.id}}">{{ sujet.postCount }}</td>
+            <td class="button-group">
+              <button
+                [ngClass]="{ 'action-button': true, 'inactive': currentUserId !== sujet.auteurId }"
+                [disabled]="currentUserId !== sujet.auteurId"
+                [routerLink]="['/update-sujet', sujet.id]"
+              >
+                Modifier
+              </button>
+              <button
+                [ngClass]="{ 'action-button': true, 'inactive': currentUserId !== sujet.auteurId }"
+                [disabled]="currentUserId !== sujet.auteurId"
+                (click)="deleteSujet(sujet.id)"
+              >
+                Effacer
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

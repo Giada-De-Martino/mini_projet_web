@@ -25,7 +25,7 @@ export class PostComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.idSujet = this.route.snapshot.paramMap.get('idSujet') as string;
+    this.idSujet = this.route.snapshot.paramMap.get('sujetId') as string;
     if (this.idSujet) {
       this.loadPosts();
     } else {

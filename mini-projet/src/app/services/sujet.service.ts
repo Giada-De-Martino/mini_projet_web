@@ -1,48 +1,64 @@
+// src/app/services/sujet.service.ts
 import { Injectable } from '@angular/core';
 import PocketBase from 'pocketbase';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SujetService {
-    private pb: PocketBase;
-    private _userId: string | null = null;
-  
-    constructor() {
-      this.pb = new PocketBase(environment.baseUrl);
-    }
+  private pb: PocketBase;
 
-    async getSujetByCours(coursId: string): Promise<any[]>{
-        try {
-            const records = await this.pb.collection('Sujet').getList(1, 50, {
-            filter: `coursId = "${coursId}"`,
-            });
-            return records.items;
-        } catch (error) {
-            console.error('Error fetching posts by cours ID', error);
-            throw error;
-        }
-    }
+  constructor() {
+    this.pb = new PocketBase(environment.baseUrl);
+  }
 
-    async getSujetById(idSujet: string){
-        const pb = new PocketBase(environment.baseUrl);
-        const record = await pb.collection('Sujet').getOne(idSujet);
-        return record;
-      }
-    
-      async addSujet(data: { contenu: string; auteurId: string }) {
-        const pb = new PocketBase(environment.baseUrl);
-        const record = await pb.collection('Sujet').create(data);
-      }
-    
-      async updateSujet(idSujet: string, data: { contenu: string, auteurId: string }){
-        const pb = new PocketBase(environment.baseUrl);
-        const record = await pb.collection('Sujet').update(idSujet, data);
-      }
-    
-      async deleteSujet(idSujet: string){
-        const pb = new PocketBase(environment.baseUrl);
-        await pb.collection('Sujet').delete(idSujet);
-      }
+  async getSujetsByCoursId(coursId: string): Promise<any[]> {
+    try {
+      const records = await this.pb.collection('Sujet').getList(1, 50, {
+        filter: `coursId = "${coursId}"`
+      });
+      return records.items;
+    } catch (error) {
+      console.error('Error fetching sujets by cours ID', error);
+      throw error;
+    }
+  }
+
+  async getSujetById(id: string): Promise<any> {
+    try {
+      const record = await this.pb.collection('Sujet').getOne(id);
+      return record;
+    } catch (error) {
+      console.error('Error fetching sujet by ID', error);
+      throw error;
+    }
+  }
+
+  async addSujet(data: { titre: string; auteurId: string; coursId: string }): Promise<void> {
+    try {
+      await this.pb.collection('Sujet').create(data);
+    } catch (error) {
+      console.error('Error adding sujet:', error);
+      throw error;
+    }
+  }
+
+  async updateSujet(id: string, updatedData: { titre: string }): Promise<void> {
+    try {
+      await this.pb.collection('Sujet').update(id, updatedData);
+    } catch (error) {
+      console.error('Error updating sujet:', error);
+      throw error;
+    }
+  }
+
+  async deleteSujet(id: string): Promise<void> {
+    try {
+      await this.pb.collection('Sujet').delete(id);
+    } catch (error) {
+      console.error('Error deleting sujet:', error);
+      throw error;
+    }
+  }
 }

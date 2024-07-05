@@ -19,6 +19,11 @@ export class LoginService {
     return this._userId;
   }
 
+  // Method to set the user ID after login
+  setUserId(id: string): void {
+    this._userId = id;
+  }
+
   async login(password: string, username: string): Promise<boolean> {
     try {
       const authData = await this.pb.collection('utilisateur').authWithPassword(username, password);
