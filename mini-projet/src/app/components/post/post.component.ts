@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { PostModel } from '../../models/post.model';
+import { Router } from '@angular/router';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-post',
@@ -8,5 +11,21 @@ import { Component } from '@angular/core';
   styleUrls: ['../../../styles.css']
 })
 export class PostComponent {
+  cours: PostModel[] = [];
 
+  constructor(private postService: PostService, private router: Router) { }
+
+  ngOnInit(): void {
+    this.loadPosts();
+  }
+
+  async loadPosts(): Promise<void> {
+    //to doooooooooooooooo
+    // this.cours = await this.postService.getPostBySujet();
+  }
+
+  async deleteCours(idPost: string){
+      await this.postService.deletePost(idPost);
+      location.reload();
+  }
 }
