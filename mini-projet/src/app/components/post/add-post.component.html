@@ -1,0 +1,14 @@
+<div class="breadcrumb">
+    <a routerLink="/post/:sujetId">Cours</a><span>/Création d'un post</span>
+</div>
+<div class="main">
+    <h1>Création d'un nouveau post</h1>
+
+    <p>Veuillez insérer les données demandées</p>
+
+    <form (ngSubmit)="create()">
+        <label for="contenu">Contenu :</label>
+        <input type="text" id="titre" name="titre" [(ngModel)]="contenu" required><br><br>        
+        <input type="submit" value="Submit">
+    </form>
+</div>

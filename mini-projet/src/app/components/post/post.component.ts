@@ -12,6 +12,7 @@ import { PostService } from '../../services/post.service';
 })
 export class PostComponent {
   cours: PostModel[] = [];
+  currentUserId: string | null = null;
 
   constructor(private postService: PostService, private router: Router) { }
 
@@ -24,7 +25,7 @@ export class PostComponent {
     // this.cours = await this.postService.getPostBySujet();
   }
 
-  async deleteCours(idPost: string){
+  async deletePost(idPost: string){
       await this.postService.deletePost(idPost);
       location.reload();
   }

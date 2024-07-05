@@ -1,6 +1,6 @@
 <div class="main">
     <h1> Posts </h1>
-    <button type="button" routerLink="/add-cours"> Ajouter un post </button>
+    <button type="button" routerLink="/add-post"> Ajouter un post </button>
     <div>
         <table>
             <thead>
@@ -13,9 +13,9 @@
             </thead>
             <tbody>
                 <tr *ngFor="let post of posts">
-                    <td routerLink="/sujet/{{cour.id}}">{{ post.titre }}</td>
-                    <td routerLink="/sujet/{{cour.id}}">{{ post.auteurId }}</td>
-                    <td routerLink="/sujet/{{cour.id}}">{{ post.created }}</td>
+                    <td>{{ post.titre }}</td>
+                    <td>{{ post.auteurId }}</td>
+                    <td>{{ post.created }}</td>
                     <td class="button-group">
                         <button [ngClass]="{ 'action-button': true, 'inactive': currentUserId !== post.auteurId }"
                             [disabled]="currentUserId !== post.auteurId" [routerLink]="['/update-post', post.id]">
