@@ -18,6 +18,7 @@ export class PostService {
     try {
       const records = await this.pb.collection('Post').getList(1, 50, {
         filter: `sujetId = "${sujetId}"`,
+        sort: '-created',
       });
       return records.items as unknown as PostModel[];
     } catch (error) {
@@ -26,9 +27,9 @@ export class PostService {
     }
   }
 
-  async getPostById(idPost: string): Promise<PostModel> {
+  async getPostById(postId: string): Promise<PostModel> {
     try {
-      const record = await this.pb.collection('Post').getOne(idPost);
+      const record = await this.pb.collection('Post').getOne(postId);
       return record as unknown as PostModel;
     } catch (error) {
       console.error('Error fetching post by ID', error);
@@ -46,9 +47,9 @@ export class PostService {
     }
   }
 
-  async updatePost(idPost: string, data: { contenu: string, auteurId: string }): Promise<PostModel> {
+  async updatePost(postId: string, data: { contenu: string, auteurId: string }): Promise<PostModel> {
     try {
-      const record = await this.pb.collection('Post').update(idPost, data);
+      const record = await this.pb.collection('Post').update(postId, data);
       return record as unknown as PostModel;
     } catch (error) {
       console.error('Error updating post', error);
@@ -56,9 +57,9 @@ export class PostService {
     }
   }
 
-  async deletePost(idPost: string): Promise<void> {
+  async deletePost(postId: string): Promise<void> {
     try {
-      await this.pb.collection('Post').delete(idPost);
+      await this.pb.collection('Post').delete(postId);
     } catch (error) {
       console.error('Error deleting post', error);
       throw error;

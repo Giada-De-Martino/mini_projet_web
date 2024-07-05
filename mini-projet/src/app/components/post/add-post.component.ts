@@ -18,9 +18,11 @@ export class AddPostComponent implements OnInit {
   contenu: string = "";
   titre: string = "";
   coursId: string = "";
+  sujetId: string = "";
 
   ngOnInit(): void { 
     this.coursId = this.getCoursIdFromStorage();
+    this.sujetId = this.getSujetIdFromStorage();
   }
 
   constructor(private postService: PostService, private loginService: LoginService, private router: Router) { }
@@ -29,6 +31,7 @@ export class AddPostComponent implements OnInit {
     const newCours = {
       contenu: this.contenu,
       auteurId: this.loginService.userId as string,
+      sujetId: this.sujetId,
     };
 
     this.postService.addPost(newCours).then(() => {
@@ -45,6 +48,16 @@ export class AddPostComponent implements OnInit {
       return coursId;
     } else {
       console.error('coursId not found in localStorage');
+      return "";
+    }
+  }
+
+  private getSujetIdFromStorage(): string {
+    const sujetId = localStorage.getItem('sujetId');
+    if (sujetId) {
+      return sujetId;
+    } else {
+      console.error('sujetId not found in localStorage');
       return "";
     }
   }

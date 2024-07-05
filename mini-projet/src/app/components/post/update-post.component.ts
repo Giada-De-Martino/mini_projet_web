@@ -16,8 +16,9 @@ import { PostService } from '../../services/post.service';
 export class UpdatePostComponent implements OnInit {
   contenu: string = "";
   auteurId: string = "";
-  idPost: string = "";
+  postId: string = "";
   sujetId: string = "";
+  coursId: string = "";
 
   constructor(
     private postService: PostService,
@@ -27,9 +28,9 @@ export class UpdatePostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.idPost = this.route.snapshot.paramMap.get('id') as string;
-    if (this.idPost) {
-      this.postService.getPostById(this.idPost).then(post => {
+    this.postId = this.route.snapshot.paramMap.get('id') as string;
+    if (this.postId) {
+      this.postService.getPostById(this.postId).then(post => {
         this.contenu = post.contenu;
         this.auteurId = post.auteurId;
       }).catch(error => {
@@ -39,6 +40,8 @@ export class UpdatePostComponent implements OnInit {
     } else {
       console.error("Missing post ID");
     }
+    this.coursId = this.getCoursIdFromStorage();
+    this.sujetId = this.getSujetIdFromStorage();
   }
 
   updatePost(): void {
@@ -52,11 +55,31 @@ export class UpdatePostComponent implements OnInit {
       return;
     }
 
-    this.postService.updatePost(this.idPost, updatedPost).then(() => {
+    this.postService.updatePost(this.postId, updatedPost).then(() => {
       this.router.navigateByUrl(`/post/${this.route.snapshot.paramMap.get('sujetId')}`);
     }).catch(error => {
       console.error('Error updating post:', error);
       alert('Failed to update post. Please try again.');
     });
+  }
+
+  private getCoursIdFromStorage(): string {
+    const coursId = localStorage.getItem('coursId');
+    if (coursId) {
+      return coursId;
+    } else {
+      console.error('coursId not found in localStorage');
+      return "";
+    }
+  }
+
+  private getSujetIdFromStorage(): string {
+    const sujetId = localStorage.getItem('sujetId');
+    if (sujetId) {
+      return sujetId;
+    } else {
+      console.error('sujetId not found in localStorage');
+      return "";
+    }
   }
 }

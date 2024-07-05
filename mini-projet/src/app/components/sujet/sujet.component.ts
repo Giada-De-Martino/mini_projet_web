@@ -32,7 +32,6 @@ export class SujetComponent implements OnInit {
       this.loadSujets();
     } else {
       console.error('Course ID is missing');
-      // Handle the missing course ID scenario
     }
 
     this.currentUserId = this.loginService.userId; // Initialize currentUserId

@@ -20,19 +20,15 @@ export class PostComponent implements OnInit {
   coursId: string = "";
 
   constructor(
-    private postService: PostService, 
-    private router: Router, 
+    private postService: PostService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.sujetId = this.route.snapshot.paramMap.get('sujetId') as string;
-    if (this.sujetId) {
-      this.loadPosts();
-    } else {
-      console.error("Missing subject ID");
-    }
+    this.sujetId = this.route.snapshot.paramMap.get('sujetId') || "";
     this.coursId = this.getCoursIdFromStorage();
+    localStorage.setItem('sujetId', this.sujetId);
+    this.loadPosts();
   }
 
   async loadPosts(): Promise<void> {
@@ -43,9 +39,9 @@ export class PostComponent implements OnInit {
     }
   }
 
-  async deletePost(idPost: string): Promise<void> {
+  async deletePost(postId: string): Promise<void> {
     try {
-      await this.postService.deletePost(idPost);
+      await this.postService.deletePost(postId);
       this.loadPosts(); // Reload posts after deletion
     } catch (error) {
       console.error('Error deleting post:', error);

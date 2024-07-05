@@ -9,7 +9,7 @@
     <p>Veuillez insérer les données demandées</p>
     <form (ngSubmit)="updatePost()">
       <label for="contenu">Contenu :</label>
-      <input type="text" id="contenu" name="contenu" [(ngModel)]="contenu" [placeholder]="contenu" required><br><br>
+      <input type="text" id="contenu" name="contenu" [(ngModel)]="contenu" [placeholder]="this.contenu" required><br><br>
       <input type="submit" value="Enregistrer">
     </form>
   </div>

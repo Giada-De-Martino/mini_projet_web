@@ -16,6 +16,7 @@ export class UpdateSujetComponent implements OnInit {
   titre: string = "";
   sujetId: string = "";
   coursId: string = "";
+  auteurId: string = "";
 
   constructor(
     private sujetService: SujetService,
@@ -24,7 +25,19 @@ export class UpdateSujetComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sujetId = this.route.snapshot.paramMap.get('id') || "";
+    this.sujetId = this.route.snapshot.paramMap.get('id') as string;
+    if (this.sujetId) {
+      this.sujetService.getSujetById(this.sujetId).then(sujet => {
+        this.titre = sujet['titre'];
+        this.auteurId = sujet['auteurId'];
+      }).catch(error => {
+        console.error('Error loading sujet:', error);
+        alert('Failed to load sujet. Please try again.');
+      });
+    } else {
+      console.error("Missing course ID");
+    }
+
     this.coursId = this.getCoursIdFromStorage();
   }
 

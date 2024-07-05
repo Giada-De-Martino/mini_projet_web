@@ -16,7 +16,8 @@ export class SujetService {
   async getSujetsByCoursId(coursId: string): Promise<any[]> {
     try {
       const records = await this.pb.collection('Sujet').getList(1, 50, {
-        filter: `coursId = "${coursId}"`
+        filter: `coursId = "${coursId}"`,
+        sort: '-created',
       });
       return records.items;
     } catch (error) {
