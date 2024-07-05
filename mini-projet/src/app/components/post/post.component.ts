@@ -5,6 +5,7 @@ import { PostService } from '../../services/post.service';
 import { PostModel } from '../../models/post.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-post',
@@ -21,21 +22,24 @@ export class PostComponent implements OnInit {
 
   constructor(
     private postService: PostService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loginService: LoginService 
   ) { }
 
   ngOnInit(): void {
     this.sujetId = this.route.snapshot.paramMap.get('sujetId') || "";
     this.coursId = this.getCoursIdFromStorage();
     localStorage.setItem('sujetId', this.sujetId);
+    this.currentUserId = this.loginService.userId;
     this.loadPosts();
   }
 
   async loadPosts(): Promise<void> {
+    if (!this.sujetId) return;
     try {
       this.posts = await this.postService.getPostBySujet(this.sujetId);
     } catch (error) {
-      console.error('Error loading posts:', error);
+      console.error('Error fetching posts by sujet ID', error);
     }
   }
 

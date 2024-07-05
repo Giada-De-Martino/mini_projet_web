@@ -35,7 +35,7 @@ export class AddPostComponent implements OnInit {
     };
 
     this.postService.addPost(newCours).then(() => {
-      this.router.navigateByUrl('/post/:sujetId');
+      this.router.navigateByUrl(`/post/${this.sujetId}`);
     }).catch(error => {
       console.error('Error adding post:', error);
       alert('Failed to add post. Please try again.');

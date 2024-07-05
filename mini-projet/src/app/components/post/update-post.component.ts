@@ -56,7 +56,7 @@ export class UpdatePostComponent implements OnInit {
     }
 
     this.postService.updatePost(this.postId, updatedPost).then(() => {
-      this.router.navigateByUrl(`/post/${this.route.snapshot.paramMap.get('sujetId')}`);
+      this.router.navigateByUrl(`/post/${this.sujetId}`);
     }).catch(error => {
       console.error('Error updating post:', error);
       alert('Failed to update post. Please try again.');

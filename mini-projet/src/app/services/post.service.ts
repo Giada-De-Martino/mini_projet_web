@@ -14,13 +14,13 @@ export class PostService {
     this.pb = new PocketBase(environment.baseUrl);
   }
 
-  async getPostBySujet(sujetId: string): Promise<PostModel[]> {
+  async getPostBySujet(sujetId: string): Promise<any[]> {
     try {
       const records = await this.pb.collection('Post').getList(1, 50, {
         filter: `sujetId = "${sujetId}"`,
         sort: '-created',
       });
-      return records.items as unknown as PostModel[];
+      return records.items;
     } catch (error) {
       console.error('Error fetching posts by cours ID', error);
       throw error;

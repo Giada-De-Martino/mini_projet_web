@@ -22,12 +22,18 @@
                     <td>{{ post.auteurId }}</td>
                     <td>{{ post.created }}</td>
                     <td class="button-group">
-                        <button [ngClass]="{ 'action-button': true, 'inactive': currentUserId !== post.auteurId }"
-                            [disabled]="currentUserId !== post.auteurId" [routerLink]="['/update-post', post.id]">
+                        <button
+                            [ngClass]="{ 'action-button': true, 'inactive': currentUserId !== post.auteurId }"
+                            [disabled]="currentUserId !== post.auteurId"
+                            [routerLink]="['/update-post', post.id]"
+                        >
                             Modifier
                         </button>
-                        <button [ngClass]="{ 'action-button': true, 'inactive': currentUserId !== post.auteurId }"
-                            [disabled]="currentUserId !== post.auteurId" (click)="deletePost(post.id)">
+                        <button
+                            [ngClass]="{ 'action-button': true, 'inactive': currentUserId !== post.auteurId }"
+                            [disabled]="currentUserId !== post.auteurId"
+                            (click)="deletePost(post.id)"
+                        >
                             Effacer
                         </button>
                     </td>
