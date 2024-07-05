@@ -1,14 +1,14 @@
 <div class="breadcrumb">
-    <a routerLink="/post/:sujetId">Cours</a><span>/Modification du post</span>
+    <a [routerLink]="['/post', 'sujetId']">Sujet</a>
+    <span>/Modification du post</span>
 </div>
-<div class="main">
+  <div class="main">
     <h1>Modification du post</h1>
-
     <p>Veuillez insérer les données demandées</p>
-
-    <form (ngSubmit)="updateCours()">
-        <label for="titre">Titre :</label>
-        <input type="text" id="titre" name="titre" [(ngModel)]="titre" [placeholder]="this.titre" required><br><br>        
-        <input type="submit" value="Enregistrer">
+    <form (ngSubmit)="updatePost()">
+      <label for="contenu">Contenu :</label>
+      <input type="text" id="contenu" name="contenu" [(ngModel)]="contenu" [placeholder]="contenu" required><br><br>
+      <input type="submit" value="Enregistrer">
     </form>
-</div>
+  </div>
+  

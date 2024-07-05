@@ -10,7 +10,7 @@ import { PostService } from '../../services/post.service';
   selector: 'app-post',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
-  templateUrl: './add-cours.component.html', // Corrected the template URL to match the component name
+  templateUrl: './add-post.component.html', // Corrected the template URL to match the component name
   styleUrls: ['../../../styles.css']
 })
 
