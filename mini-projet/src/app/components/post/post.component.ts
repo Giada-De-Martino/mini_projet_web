@@ -17,6 +17,7 @@ export class PostComponent implements OnInit {
   posts: PostModel[] = [];
   currentUserId: string | null = null;
   idSujet: string = "";
+  idCours: string = "";
 
   constructor(
     private postService: PostService, 
@@ -31,6 +32,7 @@ export class PostComponent implements OnInit {
     } else {
       console.error("Missing subject ID");
     }
+    this.idCours = this.getCoursIdFromStorage();
   }
 
   async loadPosts(): Promise<void> {
@@ -47,6 +49,16 @@ export class PostComponent implements OnInit {
       this.loadPosts(); // Reload posts after deletion
     } catch (error) {
       console.error('Error deleting post:', error);
+    }
+  }
+
+  private getCoursIdFromStorage(): string {
+    const idCours = localStorage.getItem('idCours');
+    if (idCours) {
+      return idCours;
+    } else {
+      console.error('idCours not found in localStorage');
+      return "";
     }
   }
 }

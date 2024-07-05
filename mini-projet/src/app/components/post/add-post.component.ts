@@ -17,8 +17,11 @@ import { PostService } from '../../services/post.service';
 export class AddPostComponent implements OnInit {
   contenu: string = "";
   titre: string = "";
+  idCours: string = "";
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.idCours = this.getCoursIdFromStorage();
+  }
 
   constructor(private postService: PostService, private loginService: LoginService, private router: Router) { }
 
@@ -34,5 +37,15 @@ export class AddPostComponent implements OnInit {
       console.error('Error adding post:', error);
       alert('Failed to add post. Please try again.');
     });
+  }
+
+  private getCoursIdFromStorage(): string {
+    const idCours = localStorage.getItem('idCours');
+    if (idCours) {
+      return idCours;
+    } else {
+      console.error('idCours not found in localStorage');
+      return "";
+    }
   }
 }
