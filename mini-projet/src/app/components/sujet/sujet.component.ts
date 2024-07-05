@@ -17,6 +17,7 @@ export class SujetComponent implements OnInit {
   sujets: any[] = [];
   coursId: string | null = null;
   currentUserId: string | null = null; // Add currentUserId property
+  auteur: string = "";
 
   constructor(
     private sujetService: SujetService,
