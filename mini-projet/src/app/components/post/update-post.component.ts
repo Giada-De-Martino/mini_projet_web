@@ -17,6 +17,7 @@ export class UpdatePostComponent implements OnInit {
   contenu: string = "";
   auteurId: string = "";
   idPost: string = "";
+  sujetId: string = "";
 
   constructor(
     private postService: PostService,

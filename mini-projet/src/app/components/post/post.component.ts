@@ -16,8 +16,8 @@ import { FormsModule } from '@angular/forms';
 export class PostComponent implements OnInit {
   posts: PostModel[] = [];
   currentUserId: string | null = null;
-  idSujet: string = "";
-  idCours: string = "";
+  sujetId: string = "";
+  coursId: string = "";
 
   constructor(
     private postService: PostService, 
@@ -26,18 +26,18 @@ export class PostComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.idSujet = this.route.snapshot.paramMap.get('sujetId') as string;
-    if (this.idSujet) {
+    this.sujetId = this.route.snapshot.paramMap.get('sujetId') as string;
+    if (this.sujetId) {
       this.loadPosts();
     } else {
       console.error("Missing subject ID");
     }
-    this.idCours = this.getCoursIdFromStorage();
+    this.coursId = this.getCoursIdFromStorage();
   }
 
   async loadPosts(): Promise<void> {
     try {
-      this.posts = await this.postService.getPostBySujet(this.idSujet);
+      this.posts = await this.postService.getPostBySujet(this.sujetId);
     } catch (error) {
       console.error('Error loading posts:', error);
     }
@@ -53,11 +53,11 @@ export class PostComponent implements OnInit {
   }
 
   private getCoursIdFromStorage(): string {
-    const idCours = localStorage.getItem('idCours');
-    if (idCours) {
-      return idCours;
+    const coursId = localStorage.getItem('coursId');
+    if (coursId) {
+      return coursId;
     } else {
-      console.error('idCours not found in localStorage');
+      console.error('coursId not found in localStorage');
       return "";
     }
   }

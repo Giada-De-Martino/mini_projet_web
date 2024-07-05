@@ -17,10 +17,10 @@ import { PostService } from '../../services/post.service';
 export class AddPostComponent implements OnInit {
   contenu: string = "";
   titre: string = "";
-  idCours: string = "";
+  coursId: string = "";
 
   ngOnInit(): void { 
-    this.idCours = this.getCoursIdFromStorage();
+    this.coursId = this.getCoursIdFromStorage();
   }
 
   constructor(private postService: PostService, private loginService: LoginService, private router: Router) { }
@@ -40,11 +40,11 @@ export class AddPostComponent implements OnInit {
   }
 
   private getCoursIdFromStorage(): string {
-    const idCours = localStorage.getItem('idCours');
-    if (idCours) {
-      return idCours;
+    const coursId = localStorage.getItem('coursId');
+    if (coursId) {
+      return coursId;
     } else {
-      console.error('idCours not found in localStorage');
+      console.error('coursId not found in localStorage');
       return "";
     }
   }

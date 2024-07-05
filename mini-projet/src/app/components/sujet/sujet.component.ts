@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SujetComponent implements OnInit {
   sujets: any[] = [];
-  idCours: string | null = null;
+  coursId: string | null = null;
   currentUserId: string | null = null; // Add currentUserId property
 
   constructor(
@@ -26,9 +26,9 @@ export class SujetComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.idCours = this.route.snapshot.paramMap.get('idCours');
-    if (this.idCours) {
-      this.sharedService.setCoursId(this.idCours);
+    this.coursId = this.route.snapshot.paramMap.get('coursId');
+    if (this.coursId) {
+      this.sharedService.setCoursId(this.coursId);
       this.loadSujets();
     } else {
       console.error('Course ID is missing');
@@ -36,22 +36,22 @@ export class SujetComponent implements OnInit {
     }
 
     this.currentUserId = this.loginService.userId; // Initialize currentUserId
-    this.idCours = this.route.snapshot.paramMap.get('idCours') || "";
-    localStorage.setItem('idCours', this.idCours);
+    this.coursId = this.route.snapshot.paramMap.get('coursId') || "";
+    localStorage.setItem('coursId', this.coursId);
   }
 
   async loadSujets(): Promise<void> {
-    if (!this.idCours) return;
+    if (!this.coursId) return;
     try {
-      this.sujets = await this.sujetService.getSujetsByCoursId(this.idCours);
+      this.sujets = await this.sujetService.getSujetsByCoursId(this.coursId);
     } catch (error) {
       console.error('Error fetching sujets by cours ID', error);
     }
   }
 
-  async deleteSujet(idSujet: string): Promise<void> {
+  async deleteSujet(sujetId: string): Promise<void> {
     try {
-      await this.sujetService.deleteSujet(idSujet);
+      await this.sujetService.deleteSujet(sujetId);
       this.loadSujets(); // Reload sujets after deletion
     } catch (error) {
       console.error('Error deleting sujet', error);

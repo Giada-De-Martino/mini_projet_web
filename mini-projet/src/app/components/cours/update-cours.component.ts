@@ -15,7 +15,7 @@ import { LoginService } from '../../services/login.service';
 export class UpdateCoursComponent implements OnInit {
   titre: string = "";
   auteurId: string = "";
-  idCours: string = "";
+  coursId: string = "";
 
   constructor(
     private coursService: CoursService,
@@ -25,9 +25,9 @@ export class UpdateCoursComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.idCours = this.route.snapshot.paramMap.get('id') as string;
-    if (this.idCours) {
-      this.coursService.getCoursById(this.idCours).then(cours => {
+    this.coursId = this.route.snapshot.paramMap.get('id') as string;
+    if (this.coursId) {
+      this.coursService.getCoursById(this.coursId).then(cours => {
         this.titre = cours['titre'];
         this.auteurId = cours['auteurId'];
       }).catch(error => {
@@ -50,7 +50,7 @@ export class UpdateCoursComponent implements OnInit {
       return;
     }
 
-    this.coursService.updateCours(this.idCours, updatedCours).then(() => {
+    this.coursService.updateCours(this.coursId, updatedCours).then(() => {
       this.router.navigateByUrl('/cours');
     }).catch(error => {
       console.error('Error updating course:', error);

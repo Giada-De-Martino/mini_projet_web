@@ -18,7 +18,7 @@ export const routes: Routes = [
     { path: 'add-cours', component: AddCoursComponent },
     { path: 'update-cours/:id', component: UpdateCoursComponent },
 
-    { path: 'sujet/:idCours', component: SujetComponent },
+    { path: 'sujet/:coursId', component: SujetComponent },
     { path: 'add-sujet', component: AddSujetComponent },
     { path: 'update-sujet/:id', component: UpdateSujetComponent },
 

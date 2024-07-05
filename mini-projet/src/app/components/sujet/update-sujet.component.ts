@@ -14,8 +14,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class UpdateSujetComponent implements OnInit {
   titre: string = "";
-  idSujet: string = "";
-  idCours: string = "";
+  sujetId: string = "";
+  coursId: string = "";
 
   constructor(
     private sujetService: SujetService,
@@ -24,8 +24,8 @@ export class UpdateSujetComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.idSujet = this.route.snapshot.paramMap.get('id') || "";
-    this.idCours = this.getCoursIdFromStorage();
+    this.sujetId = this.route.snapshot.paramMap.get('id') || "";
+    this.coursId = this.getCoursIdFromStorage();
   }
 
   updateSujet(): void {
@@ -33,8 +33,8 @@ export class UpdateSujetComponent implements OnInit {
       titre: this.titre
     };
 
-    this.sujetService.updateSujet(this.idSujet, updatedSujet).then(() => {
-      this.router.navigateByUrl(`/sujet/${this.idCours}`);
+    this.sujetService.updateSujet(this.sujetId, updatedSujet).then(() => {
+      this.router.navigateByUrl(`/sujet/${this.coursId}`);
     }).catch(error => {
       console.error('Error updating sujet:', error);
       alert('Failed to update sujet. Please try again.');
@@ -42,11 +42,11 @@ export class UpdateSujetComponent implements OnInit {
   }
 
   private getCoursIdFromStorage(): string {
-    const idCours = localStorage.getItem('idCours');
-    if (idCours) {
-      return idCours;
+    const coursId = localStorage.getItem('coursId');
+    if (coursId) {
+      return coursId;
     } else {
-      console.error('idCours not found in localStorage');
+      console.error('coursId not found in localStorage');
       return "";
     }
   }

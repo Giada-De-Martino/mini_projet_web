@@ -16,9 +16,9 @@ export class CoursService {
   return records;
   }
 
-  async getCoursById(idCours: string){
+  async getCoursById(coursId: string){
     const pb = new PocketBase(environment.baseUrl);
-    const record = await pb.collection('Cours').getOne(idCours);
+    const record = await pb.collection('Cours').getOne(coursId);
     return record;
   }
 
@@ -27,14 +27,14 @@ export class CoursService {
     const record = await pb.collection('Cours').create(data);
   }
 
-  async updateCours(idCours: string, data: { titre: string, auteurId: string }){
+  async updateCours(coursId: string, data: { titre: string, auteurId: string }){
     const pb = new PocketBase(environment.baseUrl);
-    const record = await pb.collection('Cours').update(idCours, data);
+    const record = await pb.collection('Cours').update(coursId, data);
   }
 
-  async deleteCours(idCours: string){
+  async deleteCours(coursId: string){
     const pb = new PocketBase(environment.baseUrl);
-    await pb.collection('Cours').delete(idCours);
+    await pb.collection('Cours').delete(coursId);
   }
 
   constructor() { }

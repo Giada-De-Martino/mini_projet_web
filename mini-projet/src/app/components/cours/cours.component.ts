@@ -28,8 +28,8 @@ export class CoursComponent implements OnInit {
     this.cours = await this.coursService.getCours();
   }
 
-  async deleteCours(idCours: string){
-      await this.coursService.deleteCours(idCours);
+  async deleteCours(coursId: string){
+      await this.coursService.deleteCours(coursId);
       location.reload();
   }
 }
