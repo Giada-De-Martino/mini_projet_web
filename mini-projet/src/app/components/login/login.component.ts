@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { LoginModel } from '../../models/login.model';
 import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
-  styleUrls: ['../../../styles.css', './login.component.css'],
+  styleUrls: ['../../../styles.css'],
   imports: [FormsModule, RouterModule]
 })
 export class LoginComponent implements OnInit{
