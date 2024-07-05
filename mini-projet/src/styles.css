@@ -1,3 +1,18 @@
+.breadcrumb {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: blue; /* Or any color you prefer for links */
+    margin-right: 5px; /* Add some space between the link and the text */
+}
+
+.breadcrumb span {
+    margin-left: 5px; /* Add some space between the slash and the text */
+}
+
 .headquarters {
     position: fixed;
     top: 0;

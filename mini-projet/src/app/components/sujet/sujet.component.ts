@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-sujet',
+  selector: 'app-sujet/:idCours',
   standalone: true,
   imports: [],
   templateUrl: './sujet.component.html',
- styleUrls: ['../../../styles.css', './sujet.component.css']
+ styleUrls: ['../../../styles.css']
 })
 export class SujetComponent {
 

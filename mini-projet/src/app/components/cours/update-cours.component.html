@@ -1,1 +1,14 @@
-<p>modif-cours works!</p>
+<div class="breadcrumb">
+    <a routerLink="/cours">Cours</a><span>/Modification du cours</span>
+</div>
+<div class="main">
+    <h1>Modification du cours</h1>
+
+    <p>Veuillez insérer les données demandées</p>
+
+    <form (ngSubmit)="updateCours()">
+        <label for="titre">Titre :</label>
+        <input type="text" id="titre" name="titre" [(ngModel)]="titre" [placeholder]="this.titre" required><br><br>        
+        <input type="submit" value="Enregistrer">
+    </form>
+</div>

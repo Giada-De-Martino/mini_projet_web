@@ -1,4 +1,3 @@
-<!-- src/app/components/cours/cours.component.html -->
 <div class="main">
     <h1> Cours </h1>
     <button type="button" routerLink="/add-cours"> Ajouter un cours </button>
@@ -14,12 +13,12 @@
             </thead>
             <tbody>
                 <tr *ngFor="let cour of cours">
-                    <td>{{ cour.titre }}</td>
-                    <td>{{ cour.auteurId }}</td>
-                    <td>{{ cour.created }}</td>
+                    <td routerLink="/sujet/{{cour.id}}">{{ cour.titre }}</td>
+                    <td routerLink="/sujet/{{cour.id}}">{{ cour.auteurId }}</td>
+                    <td routerLink="/sujet/{{cour.id}}">{{ cour.created }}</td>
                     <td class="button-group">
                         <button [ngClass]="{ 'action-button': true, 'inactive': currentUserId !== cour.auteurId }"
-                            [disabled]="currentUserId !== cour.auteurId">
+                            [disabled]="currentUserId !== cour.auteurId" [routerLink]="['/update-cours', cour.id]">
                             Modifier
                         </button>
                         <button [ngClass]="{ 'action-button': true, 'inactive': currentUserId !== cour.auteurId }"
