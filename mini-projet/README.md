@@ -18,3 +18,8 @@ ng serve
 
 Vous pouvez maintenant accéder à « http://localhost:4200/ ». 
 L'application se rechargera automatiquement si vous modifiez l'un des fichiers source.
+
+## Login dans l'application 
+- Utilisateur Test
+    username : TestUser
+    password : testuser 

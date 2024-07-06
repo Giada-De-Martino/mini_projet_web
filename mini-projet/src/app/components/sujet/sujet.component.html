@@ -11,8 +11,8 @@
           <tr>
             <th>Nom du sujet</th>
             <th>Auteur</th>
-            <th>Date du dernier post</th>
-            <th>Nombre de post</th>
+            <!-- <th>Date du dernier post</th>
+            <th>Nombre de post</th> -->
             <th>Actions</th>
           </tr>
         </thead>
@@ -20,8 +20,8 @@
           <tr *ngFor="let sujet of sujets">
             <td routerLink="/post/{{sujet.id}}">{{ sujet.titre }}</td>
             <td routerLink="/post/{{sujet.id}}">{{ sujet.auteurId }}</td>
-            <td routerLink="/post/{{sujet.id}}">{{ sujet.latestPostDate }}</td>
-            <td routerLink="/post/{{sujet.id}}">{{ sujet.postCount }}</td>
+            <!-- <td routerLink="/post/{{sujet.id}}">{{ sujet.latestPostDate }}</td>
+            <td routerLink="/post/{{sujet.id}}">{{ sujet.postCount }}</td> -->
             <td class="button-group">
               <button
                 [ngClass]="{ 'action-button': true, 'inactive': currentUserId !== sujet.auteurId }"
